@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockPilot - Supplier Directory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            mono: ['Space Mono', 'IBM Plex Mono', 'monospace'],
+            carto: ['Space Mono', 'monospace'],
+            blueprint: ['IBM Plex Mono', 'monospace'],
+          },
+          colors: {
+            ivory: {
+              DEFAULT: '#E8E0D2',
+              50: '#FAF8F5',
+              100: '#F4EFE6',
+              200: '#E8E0D2',
+              300: '#DDD2BF',
+              400: '#C8BA9F'
+            },
+            gold: {
+              DEFAULT: '#B89A5A',
+              300: '#D6C08D',
+              400: '#C7AD72',
+              500: '#B89A5A',
+              600: '#9B7E3E',
+              700: '#7E6329'
+            },
+            navy: {
+              DEFAULT: '#0E1D61',
+              800: '#142578',
+              900: '#0E1D61',
+              950: '#070F35'
+            },
+            brand: {
+              500: '#0E1D61',
+              600: '#070F35'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body class="bg-[#E8E0D2] text-[#0E1D61] min-h-screen bg-grid-pattern relative transition-colors duration-200">
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-60 bg-[#F4EFE6] border-r-2 border-[#B89A5A]/40 p-5 flex flex-col justify-between h-screen fixed left-0 top-0 overflow-y-auto z-50">
+      <div class="space-y-6">
+        <a href="dashboard.html" class="flex items-center gap-3 px-1 group">
+          <img src="logo.svg" alt="StockPilot" class="w-10 h-10 rounded-xl border-2 border-[#B89A5A] shadow-md shadow-[#0E1D61]/20 object-cover transition-transform group-hover:scale-105">
+          <div>
+            <div class="font-extrabold text-base tracking-tight text-[#0E1D61] leading-none font-atlas">StockPilot</div>
+            <span class="text-[9px] text-[#B89A5A] font-mono tracking-wider uppercase font-bold">Atlas Edition</span>
+          </div>
+        </a>
+
+        <nav class="space-y-1.5 text-xs font-semibold">
+          <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Dashboard</span>
+          </a>
+          <a href="products.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <span>Products</span>
+          </a>
+          <a href="categories.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            <span>Categories</span>
+          </a>
+          <a href="suppliers.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[#0E1D61] text-[#E8E0D2] border border-[#B89A5A] font-bold shadow-md shadow-[#0E1D61]/30">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>Suppliers</span>
+          </a>
+          <a href="stock.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"/></svg>
+            <span>Stock Movements</span>
+          </a>
+          <a href="alerts.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              <span>Low Stock</span>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-amber-500 text-amber-500 beacon-dot"></span>
+          </a>
+          <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Reports</span>
+          </a>
+          <a href="audit_trail.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Audit Trail</span>
+          </a>
+          <a href="account.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            <span>Account</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-4 border-t border-[#B89A5A]/30 flex items-center justify-between">
+        <a href="account.html" class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#0E1D61] to-[#162C8C] border border-[#B89A5A]/40 text-white font-bold text-xs flex items-center justify-center">AD</div>
+          <div>
+            <div class="text-xs font-bold text-[#0E1D61] leading-none">Admin User</div>
+            <div class="text-[10px] text-[#0E1D61]/70 font-mono mt-0.5">StockPilot HQ</div>
+          </div>
+        </a>
+        <a href="login.html" class="text-[#0E1D61]/70 hover:text-rose-500 p-1">🚪</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 md:pl-60 min-h-screen flex flex-col">
+      <header class="flex items-center justify-between px-8 h-16 border-b border-[#B89A5A]/35 bg-[#E8E0D2]/90 backdrop-blur-md sticky top-0 z-30">
+        <div class="flex items-center gap-3">
+          <h1 class="text-base font-bold text-[#0E1D61]">Supplier & Vendor Directory</h1>
+          <span class="px-2 py-0.5 rounded-full text-[10px] bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 font-mono font-bold">18 Connected Vendors</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          
+          <button onclick="openModal('add-supplier-modal')" class="px-4 py-2 btn-gold-shimmer transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] bg-[#0E1D61] hover:bg-[#162C8C] text-[#E8E0D2] border border-[#B89A5A] rounded-xl text-xs font-bold shadow-md shadow-[#0E1D61]/30 flex items-center gap-1.5 cursor-pointer">
+            <span>+</span> Add Supplier
+          </button>
+        </div>
+      </header>
+
+      <div class="p-8 space-y-6 relative z-10">
+
+        <!-- Search Bar & Filters -->
+        <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-4 rounded-2xl shadow-md border border-[#B89A5A]/40 backdrop-blur-sm flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between">
+          <div class="relative flex-1 max-w-md">
+            <input type="text" placeholder="Search suppliers by name, representative, or category..." class="w-full pl-9 pr-4 py-2 rounded-xl bg-[#E8E0D2]/50 border border-[#B89A5A]/30 border border-[#B89A5A]/35 text-xs text-[#0E1D61] placeholder-slate-400 focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+            <svg class="w-4 h-4 text-[#0E1D61]/70 absolute left-3 top-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button class="px-3 py-1.5 rounded-xl bg-[#B89A5A]/15/15 text-[#0E1D61] border border-[#B89A5A]/40 text-xs font-bold">All (18)</button>
+            <button class="px-3 py-1.5 rounded-xl border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-xs text-slate-600/70">Active (17)</button>
+            <button class="px-3 py-1.5 rounded-xl border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-xs text-slate-600/70">Pending Review (1)</button>
+          </div>
+        </div>
+
+        <!-- Supplier Grid Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Supplier 1 -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-4 hover:border-[#B89A5A]/40 transition-all">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#0E1D61] to-[#162C8C] border border-[#B89A5A]/40 text-white font-black text-sm flex items-center justify-center shadow-md shadow-[#0E1D61]/30">
+                  AT
+                </div>
+                <div>
+                  <h3 class="font-bold text-sm text-[#0E1D61]">Apex Tech Distribution</h3>
+                  <span class="text-[10px] text-[#0E1D61]/70 font-mono">ID: SUP-901 • Lead: 2 Days</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 text-[10px] font-bold">ACTIVE</span>
+            </div>
+
+            <div class="space-y-2 text-xs pt-2 border-t border-slate-100">
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Category:</span>
+                <span class="font-semibold text-slate-800">Electronics</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Contact Rep:</span>
+                <span class="font-semibold text-slate-800">Sarah Jenkins</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Email:</span>
+                <a href="mailto:orders@apextech.com" class="text-[#0E1D61] hover:underline font-mono text-[11px]">orders@apextech.com</a>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Phone:</span>
+                <span class="font-mono text-[11px] text-slate-800">+1 (555) 482-9901</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[11px] font-mono text-[#0E1D61]/70">42 Products supplied</span>
+              <button onclick="alert('Order PO draft created for Apex Tech')" class="px-3 py-1.5 bg-[#0E1D61]/10 hover:bg-[#0E1D61]/20 text-[#0E1D61] border border-[#B89A5A]/40 rounded-xl text-xs font-bold transition-colors">
+                Order Stock
+              </button>
+            </div>
+          </div>
+
+          <!-- Supplier 2 -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-4 hover:border-[#B89A5A]/40 transition-all">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 text-white font-black text-sm flex items-center justify-center shadow-md shadow-emerald-500/20">
+                  LP
+                </div>
+                <div>
+                  <h3 class="font-bold text-sm text-[#0E1D61]">LogicPoint Logistics</h3>
+                  <span class="text-[10px] text-[#0E1D61]/70 font-mono">ID: SUP-902 • Lead: 3 Days</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 text-[10px] font-bold">ACTIVE</span>
+            </div>
+
+            <div class="space-y-2 text-xs pt-2 border-t border-slate-100">
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Category:</span>
+                <span class="font-semibold text-slate-800">Hardware & Scanners</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Contact Rep:</span>
+                <span class="font-semibold text-slate-800">David Vance</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Email:</span>
+                <a href="mailto:supply@logicpoint.io" class="text-[#0E1D61] hover:underline font-mono text-[11px]">supply@logicpoint.io</a>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Phone:</span>
+                <span class="font-mono text-[11px] text-slate-800">+1 (555) 302-8812</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[11px] font-mono text-[#0E1D61]/70">28 Products supplied</span>
+              <button onclick="alert('Order PO draft created for LogicPoint')" class="px-3 py-1.5 bg-[#0E1D61]/10 hover:bg-[#0E1D61]/20 text-[#0E1D61] border border-[#B89A5A]/40 rounded-xl text-xs font-bold transition-colors">
+                Order Stock
+              </button>
+            </div>
+          </div>
+
+          <!-- Supplier 3 -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-4 hover:border-[#B89A5A]/40 transition-all">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500 to-pink-600 text-white font-black text-sm flex items-center justify-center shadow-md shadow-purple-500/20">
+                  PM
+                </div>
+                <div>
+                  <h3 class="font-bold text-sm text-[#0E1D61]">PackMat Packaging Co.</h3>
+                  <span class="text-[10px] text-[#0E1D61]/70 font-mono">ID: SUP-903 • Lead: 1 Day</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 text-[10px] font-bold">ACTIVE</span>
+            </div>
+
+            <div class="space-y-2 text-xs pt-2 border-t border-slate-100">
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Category:</span>
+                <span class="font-semibold text-slate-800">Packaging</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Contact Rep:</span>
+                <span class="font-semibold text-slate-800">Elena Rostova</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Email:</span>
+                <a href="mailto:dispatch@packmat.com" class="text-[#0E1D61] hover:underline font-mono text-[11px]">dispatch@packmat.com</a>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Phone:</span>
+                <span class="font-mono text-[11px] text-slate-800">+1 (555) 741-2299</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[11px] font-mono text-[#0E1D61]/70">56 Products supplied</span>
+              <button onclick="alert('Order PO draft created for PackMat')" class="px-3 py-1.5 bg-[#0E1D61]/10 hover:bg-[#0E1D61]/20 text-[#0E1D61] border border-[#B89A5A]/40 rounded-xl text-xs font-bold transition-colors">
+                Order Stock
+              </button>
+            </div>
+          </div>
+
+          <!-- Supplier 4 -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-4 hover:border-[#B89A5A]/40 transition-all">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-600 text-white font-black text-sm flex items-center justify-center shadow-md shadow-amber-500/20">
+                  EF
+                </div>
+                <div>
+                  <h3 class="font-bold text-sm text-[#0E1D61]">ErgoForm Furniture Corp</h3>
+                  <span class="text-[10px] text-[#0E1D61]/70 font-mono">ID: SUP-904 • Lead: 5 Days</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 text-[10px] font-bold">ACTIVE</span>
+            </div>
+
+            <div class="space-y-2 text-xs pt-2 border-t border-slate-100">
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Category:</span>
+                <span class="font-semibold text-slate-800">Office Furniture</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Contact Rep:</span>
+                <span class="font-semibold text-slate-800">Marcus Sterling</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Email:</span>
+                <a href="mailto:wholesale@ergoform.com" class="text-[#0E1D61] hover:underline font-mono text-[11px]">wholesale@ergoform.com</a>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Phone:</span>
+                <span class="font-mono text-[11px] text-slate-800">+1 (555) 901-4433</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[11px] font-mono text-[#0E1D61]/70">19 Products supplied</span>
+              <button onclick="alert('Order PO draft created for ErgoForm')" class="px-3 py-1.5 bg-[#0E1D61]/10 hover:bg-[#0E1D61]/20 text-[#0E1D61] border border-[#B89A5A]/40 rounded-xl text-xs font-bold transition-colors">
+                Order Stock
+              </button>
+            </div>
+          </div>
+
+          <!-- Supplier 5 -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-4 hover:border-[#B89A5A]/40 transition-all">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white font-black text-sm flex items-center justify-center shadow-md shadow-cyan-500/20">
+                  SC
+                </div>
+                <div>
+                  <h3 class="font-bold text-sm text-[#0E1D61]">SolvChem Reagents</h3>
+                  <span class="text-[10px] text-[#0E1D61]/70 font-mono">ID: SUP-905 • Lead: 4 Days</span>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-bold">INSPECTION</span>
+            </div>
+
+            <div class="space-y-2 text-xs pt-2 border-t border-slate-100">
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Category:</span>
+                <span class="font-semibold text-slate-800">Solvents & Fluids</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Contact Rep:</span>
+                <span class="font-semibold text-slate-800">Dr. Alan Wu</span>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Email:</span>
+                <a href="mailto:alan.wu@solvchem.de" class="text-[#0E1D61] hover:underline font-mono text-[11px]">alan.wu@solvchem.de</a>
+              </div>
+              <div class="flex items-center justify-between text-[#0E1D61]/70">
+                <span>Phone:</span>
+                <span class="font-mono text-[11px] text-slate-800">+49 30 9988-1200</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-[11px] font-mono text-[#0E1D61]/70">12 Products supplied</span>
+              <button onclick="alert('Order PO draft created for SolvChem')" class="px-3 py-1.5 bg-[#0E1D61]/10 hover:bg-[#0E1D61]/20 text-[#0E1D61] border border-[#B89A5A]/40 rounded-xl text-xs font-bold transition-colors">
+                Order Stock
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Action Card: Onboard Supplier -->
+          <div onclick="openModal('add-supplier-modal')" class="border-2 border-dashed border-[#B89A5A]/35 hover:border-[#B89A5A]/40 p-6 rounded-3xl flex flex-col items-center justify-center text-center space-y-3 cursor-pointer group hover:bg-[#B89A5A]/15/20/5 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-[#0E1D61]/10 text-[#0E1D61] flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              +
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-[#0E1D61]">Onboard New Supplier</h4>
+              <p class="text-xs text-[#0E1D61]/70 mt-0.5">Add verified vendor & contact lines</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Supplier Modal -->
+  <div id="add-supplier-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-[#F4EFE6] border border-[#B89A5A]/35 w-full max-w-lg rounded-3xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-[#B89A5A]/35">
+        <div>
+          <h3 class="text-base font-bold text-[#0E1D61]">Onboard New Vendor</h3>
+          <p class="text-xs text-[#0E1D61]/70">Store vendor point-of-contact and category catalog.</p>
+        </div>
+        <button onclick="closeModal('add-supplier-modal')" class="p-1 text-[#0E1D61]/70 hover:text-white">✕</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); alert('Supplier onboarded successfully!'); closeModal('add-supplier-modal');" class="space-y-4 text-xs">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Company / Vendor Name</label>
+            <input type="text" required placeholder="e.g. Pacific Component Supply" class="w-full px-3 py-2 rounded-xl bg-[#E8E0D2]/60 border border-[#B89A5A]/35 text-[#0E1D61] focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Representative Name</label>
+            <input type="text" required placeholder="e.g. Jason Myers" class="w-full px-3 py-2 rounded-xl bg-[#E8E0D2]/60 border border-[#B89A5A]/35 text-[#0E1D61] focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Primary Category</label>
+            <select class="w-full px-3 py-2 rounded-xl bg-[#E8E0D2]/60 border border-[#B89A5A]/35 text-[#0E1D61] focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+              <option>Electronics</option>
+              <option>Hardware</option>
+              <option>Packaging</option>
+              <option>Office Furniture</option>
+              <option>Chemicals</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Lead Time (Days)</label>
+            <input type="number" value="3" min="1" class="w-full px-3 py-2 rounded-xl bg-[#E8E0D2]/60 border border-[#B89A5A]/35 text-[#0E1D61] font-mono focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Email Address</label>
+            <input type="email" required placeholder="orders@pacificparts.com" class="w-full px-3 py-2 rounded-xl bg-[#E8E0D2]/60 border border-[#B89A5A]/35 text-[#0E1D61] font-mono focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Phone Number</label>
+            <input type="tel" placeholder="+1 (555) 000-0000" class="w-full px-3 py-2 rounded-xl bg-[#E8E0D2]/60 border border-[#B89A5A]/35 text-[#0E1D61] font-mono focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#B89A5A]/35">
+          <button type="button" onclick="closeModal('add-supplier-modal')" class="px-4 py-2 rounded-xl border border-[#B89A5A]/35 text-slate-600/70">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl btn-gold-shimmer transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] bg-[#0E1D61] hover:bg-[#162C8C] text-[#E8E0D2] border border-[#B89A5A] font-bold shadow-md shadow-[#0E1D61]/30">Register Supplier</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+  <script src="nav-component.js"></script>
+</body>
+</html>
+

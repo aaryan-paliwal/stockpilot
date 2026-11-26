@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <!-- Outer Gold Astrolabe / Compass Rim -->
+  <circle cx="24" cy="24" r="22" stroke="#B89A5A" stroke-width="1.5" stroke-dasharray="0.5 3" />
+  <circle cx="24" cy="24" r="20" stroke="#B89A5A" stroke-width="1" />
+  
+  <!-- Deep Atlas Navy Medallion Core -->
+  <circle cx="24" cy="24" r="18.5" fill="#0E1D61" stroke="#B89A5A" stroke-width="0.75" />
+
+  <!-- 4 Cardinal Alignment Marks -->
+  <line x1="24" y1="5.5" x2="24" y2="7.5" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="24" y1="40.5" x2="24" y2="42.5" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="5.5" y1="24" x2="7.5" y2="24" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" />
+  <line x1="40.5" y1="24" x2="42.5" y2="24" stroke="#B89A5A" stroke-width="1.5" stroke-linecap="round" />
+
+  <!-- Isometric Warehouse Cube (Stock) -->
+  <!-- Top Face -->
+  <polygon points="24,14 31,18 24,22 17,18" fill="#B89A5A" opacity="0.3" stroke="#B89A5A" stroke-width="1.25" stroke-linejoin="round" />
+  <!-- Left Face -->
+  <polygon points="17,18 24,22 24,31 17,27" fill="#0E1D61" stroke="#B89A5A" stroke-width="1.25" stroke-linejoin="round" />
+  <!-- Right Face -->
+  <polygon points="24,22 31,18 31,27 24,31" fill="#B89A5A" opacity="0.15" stroke="#B89A5A" stroke-width="1.25" stroke-linejoin="round" />
+
+  <!-- Pilot Compass Star / Aeronautical Arrow (Pilot) -->
+  <!-- North Arrow Head (Gold & Ivory) -->
+  <polygon points="24,10 27,20 24,17.5" fill="#E8E0D2" />
+  <polygon points="24,10 21,20 24,17.5" fill="#B89A5A" />
+  <!-- South Tail -->
+  <polygon points="24,34 26,26 24,28" fill="#B89A5A" opacity="0.8" />
+  <polygon points="24,34 22,26 24,28" fill="#E8E0D2" opacity="0.8" />
+
+  <!-- Central Pivot Core -->
+  <circle cx="24" cy="22" r="1.8" fill="#E8E0D2" stroke="#0E1D61" stroke-width="1" />
+</svg>

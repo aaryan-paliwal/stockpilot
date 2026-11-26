@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockPilot - Executive Operations Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            mono: ['Space Mono', 'IBM Plex Mono', 'monospace'],
+            carto: ['Space Mono', 'monospace'],
+            blueprint: ['IBM Plex Mono', 'monospace'],
+          },
+          colors: {
+            ivory: {
+              DEFAULT: '#E8E0D2',
+              50: '#FAF8F5',
+              100: '#F4EFE6',
+              200: '#E8E0D2',
+              300: '#DDD2BF',
+              400: '#C8BA9F'
+            },
+            gold: {
+              DEFAULT: '#B89A5A',
+              300: '#D6C08D',
+              400: '#C7AD72',
+              500: '#B89A5A',
+              600: '#9B7E3E',
+              700: '#7E6329'
+            },
+            navy: {
+              DEFAULT: '#0E1D61',
+              800: '#142578',
+              900: '#0E1D61',
+              950: '#070F35'
+            },
+            brand: {
+              500: '#0E1D61',
+              600: '#070F35'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body class="bg-[#E8E0D2] text-[#0E1D61] min-h-screen bg-grid-pattern relative transition-colors duration-200">
+
+  <!-- Ambient blur light -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[85%] h-[400px] bg-gradient-to-b from-[#B89A5A]/25 via-[#0E1D61]/15 to-transparent rounded-full blur-[100px] pointer-events-none z-0"></div>
+
+  <!-- Mobile Top Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-[#E8E0D2]/95 border-b border-[#B89A5A]/30 px-6 h-16 flex items-center justify-between md:hidden shadow-sm">
+    <div class="flex items-center gap-3">
+      <button onclick="document.getElementById('sidebar').classList.toggle('-translate-x-full')" class="p-1.5 hover:bg-[#B89A5A]/20 rounded-lg text-[#0E1D61]/70">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+            <div class="flex items-center gap-2.5">
+        <img src="logo.svg" alt="StockPilot" class="w-8 h-8 rounded-lg border border-[#B89A5A] object-cover">
+        <span class="font-bold text-sm text-[#0E1D61] font-atlas">StockPilot</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="w-60 bg-[#F4EFE6] border-r-2 border-[#B89A5A]/40 p-5 flex flex-col justify-between h-screen fixed left-0 top-0 overflow-y-auto z-50 transition-transform duration-300 -translate-x-full md:translate-x-0">
+      <div class="space-y-6">
+                <!-- Logo -->
+        <a href="dashboard.html" class="flex items-center gap-3 px-1 group">
+          <img src="logo.svg" alt="StockPilot" class="w-10 h-10 rounded-xl border-2 border-[#B89A5A] shadow-md shadow-[#0E1D61]/20 object-cover transition-transform group-hover:scale-105">
+          <div>
+            <div class="font-extrabold text-base tracking-tight text-[#0E1D61] leading-none font-atlas">StockPilot</div>
+            <span class="text-[9px] text-[#B89A5A] font-mono tracking-wider uppercase font-bold">Atlas Edition</span>
+          </div>
+        </a>
+
+        <!-- Main Nav Links -->
+        <nav class="space-y-1.5 text-xs font-semibold">
+          <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[#0E1D61] text-[#E8E0D2] border border-[#B89A5A] font-bold shadow-md shadow-[#0E1D61]/30">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Dashboard</span>
+          </a>
+          <a href="products.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <span>Products</span>
+          </a>
+          <a href="categories.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            <span>Categories</span>
+          </a>
+          <a href="suppliers.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>Suppliers</span>
+          </a>
+          <a href="stock.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"/></svg>
+            <span>Stock Movements</span>
+          </a>
+          <a href="alerts.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              <span>Low Stock</span>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-amber-500 text-amber-500 beacon-dot"></span>
+          </a>
+          <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Reports</span>
+          </a>
+          <a href="audit_trail.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Audit Trail</span>
+          </a>
+          <a href="account.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            <span>Account</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- User footer profile -->
+      <div class="pt-4 border-t border-[#B89A5A]/30 flex items-center justify-between">
+        <a href="account.html" class="flex items-center gap-2.5 hover:opacity-85 transition-opacity">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#0E1D61] to-[#162C8C] border border-[#B89A5A]/40 text-white font-bold text-xs flex items-center justify-center border border-white/20 shadow-sm">
+            AD
+          </div>
+          <div>
+            <div class="text-xs font-bold text-[#0E1D61] leading-none">Admin User</div>
+            <div class="text-[10px] text-[#0E1D61]/70 font-mono mt-0.5">StockPilot HQ</div>
+          </div>
+        </a>
+        <a href="login.html" class="p-1.5 rounded-lg text-[#0E1D61]/70 hover:text-rose-500 hover:bg-rose-500/10 transition-colors" title="Log Out">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 md:pl-60 min-h-screen flex flex-col">
+      <!-- Desktop Top Header -->
+      <header class="hidden md:flex items-center justify-between px-8 h-16 border-b border-[#B89A5A]/35 bg-[#E8E0D2]/90 backdrop-blur-md sticky top-0 z-30">
+        <div class="flex items-center gap-3">
+          <h1 class="text-base font-bold text-[#0E1D61]">Executive Operations Dashboard</h1>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 font-mono font-bold"><span class="w-1.5 h-1.5 rounded-full bg-[#B89A5A] text-[#B89A5A] beacon-dot"></span> System Live</span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <!-- Search input mockup -->
+          <div class="relative group">
+            <input type="text" placeholder="Search SKU, product, supplier..." class="w-64 pl-9 pr-4 py-1.5 rounded-xl bg-[#E8E0D2]/50 border border-[#B89A5A]/35 text-xs text-[#0E1D61] placeholder-slate-400 focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+            <svg class="w-4 h-4 text-[#0E1D61]/70 group-focus-within:text-[#B89A5A] transition-colors duration-200 absolute left-3 top-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          </div>
+
+          <!-- Theme toggle -->
+          
+
+          <!-- Notification bell -->
+          <a href="alerts.html" class="group relative p-2 bg-[#E8E0D2] hover:bg-[#DDD2BF] border border-[#B89A5A]/40 rounded-xl text-[#0E1D61]/70 transition-all duration-200 hover:-translate-y-0.5">
+            <svg class="w-4 h-4 animate-bell-swing" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full">3</span>
+          </a>
+
+          <!-- Quick Action Button -->
+          <a href="products.html" class="btn-gold-shimmer px-4 py-2 bg-[#0E1D61] hover:bg-[#162C8C] text-[#E8E0D2] border border-[#B89A5A] rounded-xl text-xs font-bold shadow-md shadow-[#0E1D61]/30 flex items-center gap-1.5 transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]">
+            <span>+</span> Add Product
+          </a>
+        </div>
+      </header>
+
+      <!-- Dashboard View Body -->
+      <div class="p-8 space-y-8 relative z-10">
+
+        <!-- 4 KPI Metrics Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <!-- Card 1 -->
+          <div class="animate-carto-reveal bg-[#F4EFE6]/95 border border-[#B89A5A]/40 p-5 rounded-2xl shadow-md backdrop-blur-sm space-y-3 hover:-translate-y-0.5 transition-transform duration-200" style="animation-delay:0ms">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold tracking-wider text-[#0E1D61]/70 uppercase">Total Products</span>
+              <div class="p-2 rounded-xl bg-[#0E1D61]/15 text-[#0E1D61] border border-[#B89A5A]/40">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+              </div>
+            </div>
+            <div>
+              <div class="text-3xl font-black text-[#0E1D61] tracking-tight kpi-count">248</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="text-[#B89A5A] text-xs font-bold">+12%</span>
+                <span class="text-[11px] text-[#0E1D61]/70">vs last month</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="animate-carto-reveal bg-[#F4EFE6]/95 border border-[#B89A5A]/40 p-5 rounded-2xl shadow-md backdrop-blur-sm space-y-3 hover:-translate-y-0.5 transition-transform duration-200" style="animation-delay:60ms">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold tracking-wider text-[#0E1D61]/70 uppercase">Total Suppliers</span>
+              <div class="p-2 rounded-xl bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+              </div>
+            </div>
+            <div>
+              <div class="text-3xl font-black text-[#0E1D61] tracking-tight kpi-count">18</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="text-[#B89A5A] text-xs font-bold">100% active</span>
+                <span class="text-[11px] text-[#0E1D61]/70">verified vendors</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="animate-carto-reveal bg-[#F4EFE6]/95 border border-[#B89A5A]/40 p-5 rounded-2xl shadow-md backdrop-blur-sm space-y-3 hover:-translate-y-0.5 transition-transform duration-200" style="animation-delay:120ms">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold tracking-wider text-[#0E1D61]/70 uppercase">Low Stock Warnings</span>
+              <div class="p-2 rounded-xl bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              </div>
+            </div>
+            <div>
+              <div class="text-3xl font-black text-amber-500 tracking-tight kpi-count">12</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="text-amber-500 text-xs font-bold">Needs reorder</span>
+                <span class="text-[11px] text-[#0E1D61]/70">3 critical stockouts</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="animate-carto-reveal bg-[#F4EFE6]/95 border border-[#B89A5A]/40 p-5 rounded-2xl shadow-md backdrop-blur-sm space-y-3 hover:-translate-y-0.5 transition-transform duration-200" style="animation-delay:180ms">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold tracking-wider text-[#0E1D61]/70 uppercase">Total Transactions</span>
+              <div class="p-2 rounded-xl bg-purple-500/10 text-purple-500 border border-purple-500/20">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+              </div>
+            </div>
+            <div>
+              <div class="text-3xl font-black text-[#0E1D61] tracking-tight kpi-count">1,482</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="text-purple-500 text-xs font-bold">+28 today</span>
+                <span class="text-[11px] text-[#0E1D61]/70">stock velocity</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Grid (Velocity Curve + Category Donut) -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Movement Velocity Area Chart (2 cols) -->
+          <div class="lg:col-span-2 bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-2xl shadow-md border border-[#B89A5A]/40 backdrop-blur-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="font-bold text-[#0E1D61] text-sm">Stock Velocity Trends (Last 7 Days)</h3>
+                <p class="text-xs text-[#0E1D61]/70">Comparing Inbound replenishment (IN) vs Outbound order fulfillment (OUT)</p>
+              </div>
+              <div class="flex items-center gap-4 text-xs font-semibold">
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-[#0E1D61]"></span>
+                  <span class="text-[#0E1D61]/80/80">Inbound (IN)</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                  <span class="text-[#0E1D61]/80/80">Outbound (OUT)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SVG Line/Area Chart -->
+            <div class="relative h-64 w-full pt-4">
+              <svg viewBox="0 0 700 240" class="w-full h-full overflow-visible">
+                <defs>
+                  <linearGradient id="inGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0E1D61" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#0E1D61" stop-opacity="0.0"/>
+                  </linearGradient>
+                  <linearGradient id="outGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f43f5e" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#f43f5e" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Grid lines -->
+                <line x1="40" y1="30" x2="680" y2="30" stroke="currentColor" class="text-slate-200" stroke-dasharray="4"/>
+                <line x1="40" y1="90" x2="680" y2="90" stroke="currentColor" class="text-slate-200" stroke-dasharray="4"/>
+                <line x1="40" y1="150" x2="680" y2="150" stroke="currentColor" class="text-slate-200" stroke-dasharray="4"/>
+                <line x1="40" y1="210" x2="680" y2="210" stroke="currentColor" class="text-slate-200"/>
+
+                <!-- Y Axis Labels -->
+                <text x="30" y="34" text-anchor="end" class="text-[10px] fill-slate-400 font-mono">150</text>
+                <text x="30" y="94" text-anchor="end" class="text-[10px] fill-slate-400 font-mono">100</text>
+                <text x="30" y="154" text-anchor="end" class="text-[10px] fill-slate-400 font-mono">50</text>
+                <text x="30" y="214" text-anchor="end" class="text-[10px] fill-slate-400 font-mono">0</text>
+
+                <!-- Inbound Fill & Stroke -->
+                <path d="M 60,180 C 140,160 180,80 250,90 C 330,100 380,45 450,60 C 530,75 580,120 660,70 L 660,210 L 60,210 Z" fill="url(#inGrad)" class="animate-carto-reveal" style="animation-delay:200ms" />
+                <path pathLength="1" d="M 60,180 C 140,160 180,80 250,90 C 330,100 380,45 450,60 C 530,75 580,120 660,70" fill="none" stroke="#0E1D61" stroke-width="3" class="animate-line-draw" />
+
+                <!-- Outbound Fill & Stroke -->
+                <path d="M 60,195 C 140,185 180,140 250,130 C 330,120 380,150 450,110 C 530,70 580,135 660,100 L 660,210 L 60,210 Z" fill="url(#outGrad)" class="animate-carto-reveal" style="animation-delay:320ms" />
+                <path pathLength="1" d="M 60,195 C 140,185 180,140 250,130 C 330,120 380,150 450,110 C 530,70 580,135 660,100" fill="none" stroke="#f43f5e" stroke-width="3" class="animate-line-draw" style="animation-delay:140ms" />
+
+                <!-- X Axis Labels -->
+                <text x="60" y="230" text-anchor="middle" class="text-[10px] fill-slate-400 font-mono">04 Nov</text>
+                <text x="160" y="230" text-anchor="middle" class="text-[10px] fill-slate-400 font-mono">05 Nov</text>
+                <text x="260" y="230" text-anchor="middle" class="text-[10px] fill-slate-400 font-mono">06 Nov</text>
+                <text x="360" y="230" text-anchor="middle" class="text-[10px] fill-slate-400 font-mono">07 Nov</text>
+                <text x="460" y="230" text-anchor="middle" class="text-[10px] fill-slate-400 font-mono">08 Nov</text>
+                <text x="560" y="230" text-anchor="middle" class="text-[10px] fill-slate-400 font-mono">09 Nov</text>
+                <text x="660" y="230" text-anchor="middle" class="text-[10px] fill-slate-400 font-mono">Today</text>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Category Donut Chart (1 col) -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-2xl shadow-md border border-[#B89A5A]/40 backdrop-blur-sm space-y-4 flex flex-col justify-between">
+            <div>
+              <h3 class="font-bold text-[#0E1D61] text-sm">Category Stock Ratio</h3>
+              <p class="text-xs text-[#0E1D61]/70">Inventory allocation by volume</p>
+            </div>
+
+            <div class="relative w-44 h-44 mx-auto flex items-center justify-center my-2">
+              <svg class="w-full h-full -rotate-90 transform" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="38" stroke="currentColor" class="text-slate-200" stroke-width="14" fill="none"/>
+                <!-- Electronics 35% -->
+                <circle cx="50" cy="50" r="38" stroke="#0E1D61" stroke-width="14" stroke-dasharray="83.5 155.5" stroke-dashoffset="0" fill="none" class="hover:opacity-80 transition-opacity cursor-pointer"/>
+                <!-- Hardware 25% -->
+                <circle cx="50" cy="50" r="38" stroke="#B89A5A" stroke-width="14" stroke-dasharray="59.7 179.3" stroke-dashoffset="-83.5" fill="none" class="hover:opacity-80 transition-opacity cursor-pointer"/>
+                <!-- Office 20% -->
+                <circle cx="50" cy="50" r="38" stroke="#f59e0b" stroke-width="14" stroke-dasharray="47.7 191.3" stroke-dashoffset="-143.2" fill="none" class="hover:opacity-80 transition-opacity cursor-pointer"/>
+                <!-- Packaging 20% -->
+                <circle cx="50" cy="50" r="38" stroke="#B89A5A" stroke-width="14" stroke-dasharray="47.7 191.3" stroke-dashoffset="-190.9" fill="none" class="hover:opacity-80 transition-opacity cursor-pointer"/>
+              </svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                <span class="text-2xl font-black text-[#0E1D61] leading-none">248</span>
+                <span class="text-[10px] text-[#0E1D61]/70 font-mono uppercase mt-1">SKUs</span>
+              </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 text-xs">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#0E1D61]"></span>
+                <span class="text-[#0E1D61]/80/80">Electronics (35%)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#B89A5A]"></span>
+                <span class="text-[#0E1D61]/80/80">Hardware (25%)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                <span class="text-[#0E1D61]/80/80">Office (20%)</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+                <span class="text-[#0E1D61]/80/80">Packaging (20%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Column Section: Urgent Low Stock Alerts & Recent Transactions -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Low Stock Action Table -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-2xl shadow-md border border-[#B89A5A]/40 backdrop-blur-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-ping"></span>
+                <h3 class="font-bold text-[#0E1D61] text-sm">Critical Stock Shortages</h3>
+              </div>
+              <a href="alerts.html" class="text-xs text-[#0E1D61] hover:underline font-semibold">View All 12 &rarr;</a>
+            </div>
+
+            <div class="divide-y divide-slate-100">
+              <!-- Item 1 -->
+              <div class="py-3 flex items-center justify-between gap-4">
+                <div class="space-y-0.5">
+                  <div class="text-xs font-bold text-[#0E1D61]">Dell UltraSharp 27" 4K Monitor</div>
+                  <div class="text-[10px] text-[#0E1D61]/70 font-mono">SKU: MON-4K-029 • Supplier: Apex Tech Distribution</div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="text-right">
+                    <span class="text-xs font-bold text-rose-500 font-mono">2 left</span>
+                    <span class="block text-[9px] text-[#0E1D61]/70">Min: 10</span>
+                  </div>
+                  <button onclick="this.textContent='✓ PO #9021 Sent'; this.classList.add('opacity-70'); showAtlasToast('Reorder PO #9021 sent to Apex Tech Distribution')" class="px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 border border-amber-500/30 rounded-lg text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer">
+                    Reorder
+                  </button>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="py-3 flex items-center justify-between gap-4">
+                <div class="space-y-0.5">
+                  <div class="text-xs font-bold text-[#0E1D61]">Wireless Bluetooth Barcode Scanner</div>
+                  <div class="text-[10px] text-[#0E1D61]/70 font-mono">SKU: SCN-BT-112 • Supplier: LogicPoint Logistics</div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="text-right">
+                    <span class="text-xs font-bold text-rose-500 font-mono">3 left</span>
+                    <span class="block text-[9px] text-[#0E1D61]/70">Min: 15</span>
+                  </div>
+                  <button onclick="this.textContent='✓ PO #9022 Sent'; this.classList.add('opacity-70'); showAtlasToast('Reorder PO #9022 sent to LogicPoint Logistics')" class="px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 border border-amber-500/30 rounded-lg text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer">
+                    Reorder
+                  </button>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="py-3 flex items-center justify-between gap-4">
+                <div class="space-y-0.5">
+                  <div class="text-xs font-bold text-[#0E1D61]">Industrial Thermal Shipping Labels 4x6</div>
+                  <div class="text-[10px] text-[#0E1D61]/70 font-mono">SKU: LBL-THM-500 • Supplier: PackMat Supplies</div>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="text-right">
+                    <span class="text-xs font-bold text-amber-500 font-mono">8 left</span>
+                    <span class="block text-[9px] text-[#0E1D61]/70">Min: 25</span>
+                  </div>
+                  <button onclick="this.textContent='✓ PO #9023 Sent'; this.classList.add('opacity-70'); showAtlasToast('Reorder PO #9023 sent to PackMat Supplies')" class="px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 border border-amber-500/30 rounded-lg text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer">
+                    Reorder
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Stock Movements Activity -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-6 rounded-2xl shadow-md border border-[#B89A5A]/40 backdrop-blur-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-[#0E1D61] text-sm">Recent Movement Ledger</h3>
+              <a href="stock.html" class="text-xs text-[#0E1D61] hover:underline font-semibold">Full Ledger &rarr;</a>
+            </div>
+
+            <div class="divide-y divide-slate-100">
+              <!-- Tx 1 -->
+              <div class="py-2.5 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50">IN</span>
+                  <div>
+                    <div class="text-xs font-semibold text-[#0E1D61]">Logitech MX Master 3S Mouse</div>
+                    <div class="text-[10px] text-[#0E1D61]/70 font-mono">By Sarah Chen • PO-8942</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold text-[#B89A5A] font-mono">+50 units</span>
+                  <span class="block text-[10px] text-[#0E1D61]/70 font-mono">10 mins ago</span>
+                </div>
+              </div>
+
+              <!-- Tx 2 -->
+              <div class="py-2.5 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-rose-500/10 text-rose-500 border border-rose-500/20">OUT</span>
+                  <div>
+                    <div class="text-xs font-semibold text-[#0E1D61]">Ergonomic Mesh Task Chair</div>
+                    <div class="text-[10px] text-[#0E1D61]/70 font-mono">By Alex Miller • SO-4421</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold text-rose-500 font-mono">-12 units</span>
+                  <span class="block text-[10px] text-[#0E1D61]/70 font-mono">35 mins ago</span>
+                </div>
+              </div>
+
+              <!-- Tx 3 -->
+              <div class="py-2.5 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50">IN</span>
+                  <div>
+                    <div class="text-xs font-semibold text-[#0E1D61]">Standard Shipping Box 12x12x12</div>
+                    <div class="text-[10px] text-[#0E1D61]/70 font-mono">By Sarah Chen • PO-8941</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold text-[#B89A5A] font-mono">+200 units</span>
+                  <span class="block text-[10px] text-[#0E1D61]/70 font-mono">2 hours ago</span>
+                </div>
+              </div>
+
+              <!-- Tx 4 -->
+              <div class="py-2.5 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-rose-500/10 text-rose-500 border border-rose-500/20">OUT</span>
+                  <div>
+                    <div class="text-xs font-semibold text-[#0E1D61]">USB-C Fast Charging Hub 100W</div>
+                    <div class="text-[10px] text-[#0E1D61]/70 font-mono">By Marcus Vance • SO-4419</div>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold text-rose-500 font-mono">-25 units</span>
+                  <span class="block text-[10px] text-[#0E1D61]/70 font-mono">4 hours ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="nav-component.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockPilot - Categories Directory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+      <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+            mono: ['Space Mono', 'IBM Plex Mono', 'monospace'],
+            carto: ['Space Mono', 'monospace'],
+            blueprint: ['IBM Plex Mono', 'monospace'],
+          },
+          colors: {
+            ivory: {
+              DEFAULT: '#E8E0D2',
+              50: '#FAF8F5',
+              100: '#F4EFE6',
+              200: '#E8E0D2',
+              300: '#DDD2BF',
+              400: '#C8BA9F'
+            },
+            gold: {
+              DEFAULT: '#B89A5A',
+              300: '#D6C08D',
+              400: '#C7AD72',
+              500: '#B89A5A',
+              600: '#9B7E3E',
+              700: '#7E6329'
+            },
+            navy: {
+              DEFAULT: '#0E1D61',
+              800: '#142578',
+              900: '#0E1D61',
+              950: '#070F35'
+            },
+            brand: {
+              500: '#0E1D61',
+              600: '#070F35'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="shared.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+</head>
+<body class="bg-[#E8E0D2] text-[#0E1D61] min-h-screen bg-grid-pattern relative transition-colors duration-200">
+
+  <div class="flex">
+    <!-- Sidebar Navigation -->
+    <aside class="w-60 bg-[#F4EFE6] border-r-2 border-[#B89A5A]/40 p-5 flex flex-col justify-between h-screen fixed left-0 top-0 overflow-y-auto z-50">
+      <div class="space-y-6">
+        <a href="dashboard.html" class="flex items-center gap-3 px-1 group">
+          <img src="logo.svg" alt="StockPilot" class="w-10 h-10 rounded-xl border-2 border-[#B89A5A] shadow-md shadow-[#0E1D61]/20 object-cover transition-transform group-hover:scale-105">
+          <div>
+            <div class="font-extrabold text-base tracking-tight text-[#0E1D61] leading-none font-atlas">StockPilot</div>
+            <span class="text-[9px] text-[#B89A5A] font-mono tracking-wider uppercase font-bold">Atlas Edition</span>
+          </div>
+        </a>
+
+        <nav class="space-y-1.5 text-xs font-semibold">
+          <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Dashboard</span>
+          </a>
+          <a href="products.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            <span>Products</span>
+          </a>
+          <a href="categories.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-[#0E1D61] text-[#E8E0D2] border border-[#B89A5A] font-bold shadow-md shadow-[#0E1D61]/30">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            <span>Categories</span>
+          </a>
+          <a href="suppliers.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span>Suppliers</span>
+          </a>
+          <a href="stock.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"/></svg>
+            <span>Stock Movements</span>
+          </a>
+          <a href="alerts.html" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <div class="flex items-center gap-3">
+              <svg class="w-4 h-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              <span>Low Stock</span>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-amber-500 text-amber-500 beacon-dot"></span>
+          </a>
+          <a href="reports.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            <span>Reports</span>
+          </a>
+          <a href="audit_trail.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Audit Trail</span>
+          </a>
+          <a href="account.html" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-[#0E1D61]/80/75 hover:text-[#0E1D61] hover:bg-[#B89A5A]/15/50 border border-transparent hover:border-[#B89A5A]/30 transition-colors">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            <span>Account</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-4 border-t border-[#B89A5A]/30 flex items-center justify-between">
+        <a href="account.html" class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#0E1D61] to-[#162C8C] border border-[#B89A5A]/40 text-white font-bold text-xs flex items-center justify-center">AD</div>
+          <div>
+            <div class="text-xs font-bold text-[#0E1D61] leading-none">Admin User</div>
+            <div class="text-[10px] text-[#0E1D61]/70 font-mono mt-0.5">StockPilot HQ</div>
+          </div>
+        </a>
+        <a href="login.html" class="text-[#0E1D61]/70 hover:text-rose-500 p-1">🚪</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 md:pl-60 min-h-screen flex flex-col">
+      <header class="flex items-center justify-between px-8 h-16 border-b border-[#B89A5A]/35 bg-[#E8E0D2]/90 backdrop-blur-md sticky top-0 z-30">
+        <div class="flex items-center gap-3">
+          <h1 class="text-base font-bold text-[#0E1D61]">Product Categories</h1>
+          <span class="px-2 py-0.5 rounded-full text-[10px] bg-purple-500/10 text-purple-500 border border-purple-500/20 font-mono font-bold">5 Active Groups</span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          
+          <button onclick="openModal('add-category-modal')" class="px-4 py-2 btn-gold-shimmer transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] bg-[#0E1D61] hover:bg-[#162C8C] text-[#E8E0D2] border border-[#B89A5A] rounded-xl text-xs font-bold shadow-md shadow-[#0E1D61]/30 flex items-center gap-1.5 cursor-pointer">
+            <span>+</span> New Category
+          </button>
+        </div>
+      </header>
+
+      <div class="p-8 space-y-6 relative z-10">
+        
+        <!-- Summary Stats Banner -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-5 rounded-2xl backdrop-blur-sm shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[11px] font-bold text-[#0E1D61]/70 uppercase">Active Categories</span>
+              <div class="text-2xl font-black text-[#0E1D61] mt-1">5 Taxonomies</div>
+            </div>
+            <div class="p-3 bg-purple-500/10 text-purple-500 border border-purple-500/20 rounded-2xl text-xl">🏷️</div>
+          </div>
+
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-5 rounded-2xl backdrop-blur-sm shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[11px] font-bold text-[#0E1D61]/70 uppercase">Assigned SKUs</span>
+              <div class="text-2xl font-black text-[#0E1D61] mt-1">248 Products</div>
+            </div>
+            <div class="p-3 bg-[#0E1D61]/15 text-[#0E1D61] border border-[#B89A5A]/40 rounded-2xl text-xl">📦</div>
+          </div>
+
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 p-5 rounded-2xl backdrop-blur-sm shadow-sm flex items-center justify-between">
+            <div>
+              <span class="text-[11px] font-bold text-[#0E1D61]/70 uppercase">Total Inventory Value</span>
+              <div class="text-2xl font-black text-[#B89A5A] mt-1">$142,500.00</div>
+            </div>
+            <div class="p-3 bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 rounded-2xl text-xl">💰</div>
+          </div>
+        </div>
+
+        <!-- Category Grid Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Category 1: Electronics -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 hover:border-[#B89A5A]/40 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-5 transition-all">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-[#0E1D61]/15 text-[#0E1D61] border border-[#B89A5A]/40 flex items-center justify-center text-2xl shadow-sm">
+                💻
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-[#0E1D61]/15 text-[#0E1D61] border border-[#B89A5A]/40 text-[10px] font-mono font-bold">86 SKUs</span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-[#0E1D61]">Electronics & Computing</h3>
+              <p class="text-xs text-[#0E1D61]/70 mt-1 leading-relaxed">Monitors, mechanical keyboards, mice, docking stations, and micro-controllers.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 text-xs">
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">VALUATION</span>
+                <span class="font-bold font-mono text-[#0E1D61]">$68,400</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">STOCK HEALTH</span>
+                <span class="font-bold text-amber-500 font-mono">4 Alerts</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <a href="products.html" class="text-xs font-bold text-[#0E1D61] hover:underline">Browse Products &rarr;</a>
+              <div class="space-x-1">
+                <button onclick="alert('Editing Electronics')" class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">✏️</button>
+                <button onclick="alert('Cannot delete category with active products')" class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">🗑️</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: Hardware -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 hover:border-emerald-500/40 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-5 transition-all">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 flex items-center justify-center text-2xl shadow-sm">
+                ⚙️
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-[#B89A5A]/20 text-[#0E1D61] border border-[#B89A5A]/50 text-[10px] font-mono font-bold">54 SKUs</span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-[#0E1D61]">Hardware & Tools</h3>
+              <p class="text-xs text-[#0E1D61]/70 mt-1 leading-relaxed">Barcode scanners, mounting brackets, hand tools, fasteners, and cabling rigs.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 text-xs">
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">VALUATION</span>
+                <span class="font-bold font-mono text-[#0E1D61]">$32,150</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">STOCK HEALTH</span>
+                <span class="font-bold text-[#B89A5A] font-mono">All Healthy</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <a href="products.html" class="text-xs font-bold text-[#0E1D61] hover:underline">Browse Products &rarr;</a>
+              <div class="space-x-1">
+                <button class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">✏️</button>
+                <button class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">🗑️</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3: Office Supplies -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 hover:border-amber-500/40 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-5 transition-all">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-500 border border-amber-500/20 flex items-center justify-center text-2xl shadow-sm">
+                🪑
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20 text-[10px] font-mono font-bold">42 SKUs</span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-[#0E1D61]">Office Furniture & Ergonomics</h3>
+              <p class="text-xs text-[#0E1D61]/70 mt-1 leading-relaxed">Executive desk chairs, adjustable standing desks, monitor arms, and storage drawers.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 text-xs">
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">VALUATION</span>
+                <span class="font-bold font-mono text-[#0E1D61]">$24,900</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">STOCK HEALTH</span>
+                <span class="font-bold text-amber-500 font-mono">2 Alerts</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <a href="products.html" class="text-xs font-bold text-[#0E1D61] hover:underline">Browse Products &rarr;</a>
+              <div class="space-x-1">
+                <button class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">✏️</button>
+                <button class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">🗑️</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 4: Packaging -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 hover:border-purple-500/40 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-5 transition-all">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-500 border border-purple-500/20 flex items-center justify-center text-2xl shadow-sm">
+                📦
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-500 border border-purple-500/20 text-[10px] font-mono font-bold">48 SKUs</span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-[#0E1D61]">Packaging & Shipping</h3>
+              <p class="text-xs text-[#0E1D61]/70 mt-1 leading-relaxed">Double-wall corrugated shipping boxes, bubble cushioning, tape, and thermal roll labels.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 text-xs">
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">VALUATION</span>
+                <span class="font-bold font-mono text-[#0E1D61]">$11,850</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">STOCK HEALTH</span>
+                <span class="font-bold text-amber-500 font-mono">1 Alert</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <a href="products.html" class="text-xs font-bold text-[#0E1D61] hover:underline">Browse Products &rarr;</a>
+              <div class="space-x-1">
+                <button class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">✏️</button>
+                <button class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">🗑️</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 5: Chemicals -->
+          <div class="bg-[#F4EFE6]/95 border border-[#B89A5A]/35 hover:border-teal-500/40 p-6 rounded-3xl shadow-sm backdrop-blur-sm space-y-5 transition-all">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-2xl bg-teal-500/10 text-teal-500 border border-teal-500/20 flex items-center justify-center text-2xl shadow-sm">
+                🧪
+              </div>
+              <span class="px-2.5 py-1 rounded-full bg-teal-500/10 text-teal-500 border border-teal-500/20 text-[10px] font-mono font-bold">18 SKUs</span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-[#0E1D61]">Solvents & Cleaning Fluids</h3>
+              <p class="text-xs text-[#0E1D61]/70 mt-1 leading-relaxed">Isopropyl cleaning alcohol 99%, industrial degreasers, and anti-static surface treatments.</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-100 text-xs">
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">VALUATION</span>
+                <span class="font-bold font-mono text-[#0E1D61]">$5,200</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-[#0E1D61]/70 block font-mono">STOCK HEALTH</span>
+                <span class="font-bold text-[#B89A5A] font-mono">Healthy</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <a href="products.html" class="text-xs font-bold text-[#0E1D61] hover:underline">Browse Products &rarr;</a>
+              <div class="space-x-1">
+                <button class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">✏️</button>
+                <button class="p-1.5 rounded-lg border border-[#B89A5A]/35 hover:bg-[#E8E0D2]/60 text-[#0E1D61]/70">🗑️</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Card: Create Category -->
+          <div onclick="openModal('add-category-modal')" class="border-2 border-dashed border-[#B89A5A]/35 hover:border-[#B89A5A]/40 p-6 rounded-3xl flex flex-col items-center justify-center text-center space-y-3 cursor-pointer group hover:bg-[#B89A5A]/15/20/5 transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-[#0E1D61]/10 text-[#0E1D61] flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              +
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-[#0E1D61]">Create New Category</h4>
+              <p class="text-xs text-[#0E1D61]/70 mt-0.5">Organize your warehouse inventory</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Add Category Modal -->
+  <div id="add-category-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+    <div class="bg-[#F4EFE6] border border-[#B89A5A]/35 w-full max-w-md rounded-3xl p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-[#B89A5A]/35">
+        <div>
+          <h3 class="text-base font-bold text-[#0E1D61]">Create New Category</h3>
+          <p class="text-xs text-[#0E1D61]/70">Group items and configure tracking icons.</p>
+        </div>
+        <button onclick="closeModal('add-category-modal')" class="p-1 text-[#0E1D61]/70 hover:text-white">✕</button>
+      </div>
+
+      <form onsubmit="event.preventDefault(); alert('Category successfully created!'); closeModal('add-category-modal');" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Category Title</label>
+          <input type="text" required placeholder="e.g. Robotics & Automation" class="w-full px-3 py-2 rounded-xl bg-[#E8E0D2]/60 border border-[#B89A5A]/35 text-[#0E1D61] focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200">
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Icon Representation</label>
+          <div class="grid grid-cols-6 gap-2">
+            <button type="button" class="p-2.5 rounded-xl border border-[#B89A5A] bg-[#0E1D61]/10 text-lg">🤖</button>
+            <button type="button" class="p-2.5 rounded-xl border border-[#B89A5A]/35 text-lg hover:border-[#B89A5A]">💻</button>
+            <button type="button" class="p-2.5 rounded-xl border border-[#B89A5A]/35 text-lg hover:border-[#B89A5A]">⚙️</button>
+            <button type="button" class="p-2.5 rounded-xl border border-[#B89A5A]/35 text-lg hover:border-[#B89A5A]">📦</button>
+            <button type="button" class="p-2.5 rounded-xl border border-[#B89A5A]/35 text-lg hover:border-[#B89A5A]">🪑</button>
+            <button type="button" class="p-2.5 rounded-xl border border-[#B89A5A]/35 text-lg hover:border-[#B89A5A]">🧪</button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Description</label>
+          <textarea rows="3" placeholder="Brief explanation of items in this classification..." class="w-full px-3 py-2 rounded-xl bg-[#E8E0D2]/60 border border-[#B89A5A]/35 text-[#0E1D61] focus:outline-none focus:border-[#B89A5A] focus:ring-2 focus:ring-[#B89A5A]/20 transition-all duration-200"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-[#B89A5A]/35">
+          <button type="button" onclick="closeModal('add-category-modal')" class="px-4 py-2 rounded-xl border border-[#B89A5A]/35 text-slate-600/70">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl btn-gold-shimmer transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98] bg-[#0E1D61] hover:bg-[#162C8C] text-[#E8E0D2] border border-[#B89A5A] font-bold shadow-md shadow-[#0E1D61]/30">Create Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+  <script src="nav-component.js"></script>
+</body>
+</html>
+

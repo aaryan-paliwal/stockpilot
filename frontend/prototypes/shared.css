@@ -1,0 +1,298 @@
+/* StockPilot Global Prototype Styles - Warm Ivory Paper Edition */
+/* Color Palette: Ivory (#E8E0D2), Gold (#B89A5A), Deep Atlas Navy (#0E1D61) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Cinzel:wght@600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-ivory: #E8E0D2;
+  --color-ivory-light: #F6F2EC;
+  --color-ivory-card: #FAF7F2;
+  --color-gold: #B89A5A;
+  --color-gold-light: #D4BD86;
+  --color-gold-dark: #917637;
+  --color-navy: #0E1D61;
+  --color-navy-dark: #070F35;
+  --color-navy-surface: #0B174F;
+  --color-navy-light: #162C8C;
+
+  /* Theme tokens - Warm Ivory Paper */
+  --bg-primary: #E8E0D2;
+  --bg-secondary: #F6F2EC;
+  --card-bg: #FAF7F2;
+  --text-primary: #0E1D61;
+  --text-muted: #4B5580;
+  --border-primary: rgba(184, 154, 90, 0.4);
+  --border-strong: #B89A5A;
+}
+
+html, body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #E8E0D2;
+  color: #0E1D61;
+  letter-spacing: -0.01em;
+  /* Tabular lining figures by default for uniform ledger metric alignment */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+h1, h2, h3, .font-atlas {
+  letter-spacing: -0.02em;
+}
+
+/* Mechanical Cartographic Typewriter for Technical Stamping & SKUs */
+code, .font-mono {
+  font-family: 'Space Mono', 'IBM Plex Mono', monospace;
+  font-feature-settings: 'liga' 0; /* Disable IDE code ligatures */
+  letter-spacing: -0.025em;        /* Tighten pitch slightly for paper elegance */
+}
+
+/* Dedicated Tabular Numbers Utility */
+.font-tabular, .tabular-nums, table td, table th {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Custom Smooth Gold Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(14, 29, 97, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 154, 90, 0.5);
+  border-radius: 9999px;
+  transition: background-color 200ms ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B89A5A;
+}
+
+/* Global Accessible Gold Focus Ring */
+:focus-visible {
+  outline: 2px solid #B89A5A;
+  outline-offset: 2px;
+  transition: outline-offset 150ms ease;
+}
+
+/* Cartographic Topography & Grid Pattern inspired by Atlas Field Notes */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(184, 154, 90, 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(184, 154, 90, 0.22) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+}
+
+@keyframes gridDrift {
+  from { background-position: 0 0; }
+  to { background-position: 3rem 3rem; }
+}
+.bg-grid-drift {
+  animation: gridDrift 45s linear infinite;
+}
+
+/* Subtle Topographic Elevation Lines */
+.bg-contour-pattern {
+  background-image: radial-gradient(circle at 50% 50%, transparent 40%, rgba(184, 154, 90, 0.1) 41%, transparent 42%),
+                    radial-gradient(circle at 20% 80%, transparent 55%, rgba(14, 29, 97, 0.06) 56%, transparent 57%);
+  background-size: 100% 100%;
+}
+
+/* Gold border glow utility */
+.gold-glow {
+  box-shadow: 0 0 20px -3px rgba(184, 154, 90, 0.3);
+}
+
+.navy-glow {
+  box-shadow: 0 10px 30px -5px rgba(14, 29, 97, 0.2);
+}
+
+/* ==========================================================================
+   Cartographic Field Notes Motion System
+   ========================================================================== */
+
+@keyframes softPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+.animate-soft-pulse {
+  animation: softPulse 3s ease-in-out infinite;
+}
+
+/* 1. Page & Hero Entrance */
+@keyframes cartoReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-carto-reveal {
+  animation: cartoReveal 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-page-enter {
+  animation: pageEnter 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 2. Modals & Overlays (fixes .animate-scale across prototypes) */
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-backdrop {
+  animation: backdropIn 200ms ease-out both;
+}
+
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-scale {
+  animation: modalScaleIn 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 3. Telemetry Radar Beacon */
+@keyframes telemetryBeacon {
+  0% { transform: scale(1); opacity: 0.65; }
+  75%, 100% { transform: scale(2.3); opacity: 0; }
+}
+.beacon-dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.beacon-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: telemetryBeacon 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* 4. Ledger Row Reveal & Gold Left-Border Hover */
+@keyframes ledgerRowIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-ledger-row {
+  animation: ledgerRowIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(min(var(--row-index, 0), 8) * 35ms);
+}
+.ledger-row-hover {
+  transition: background-color 180ms ease-out, box-shadow 180ms ease-out;
+}
+.ledger-row-hover:hover {
+  box-shadow: inset 3px 0 0 #B89A5A;
+  background-color: rgba(184, 154, 90, 0.09) !important;
+}
+
+/* 5. Quantity Update Flash */
+@keyframes qtyFlash {
+  0% { background-color: rgba(184, 154, 90, 0.32); transform: scale(1.06); }
+  100% { background-color: transparent; transform: scale(1); }
+}
+.animate-qty-flash {
+  animation: qtyFlash 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* 6. Data Visualization Draw-In */
+@keyframes lineDraw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.animate-line-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: lineDraw 850ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes barGrowX {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.animate-bar-x {
+  transform-origin: left center;
+  animation: barGrowX 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes barGrowY {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.animate-bar-y {
+  transform-origin: center bottom;
+  transform-box: fill-box;
+  animation: barGrowY 540ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* 7. Antique Gold CTA Shimmer Sweep */
+.btn-gold-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(184, 154, 90, 0.32) 50%, transparent 75%);
+  transform: translateX(-120%);
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.btn-gold-shimmer:hover::after {
+  transform: translateX(120%);
+}
+
+/* 8. Error Shake & Bell Swing */
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+.animate-shake {
+  animation: shakeError 360ms ease-in-out;
+}
+
+@keyframes bellSwing {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-12deg); }
+  45% { transform: rotate(10deg); }
+  70% { transform: rotate(-6deg); }
+  85% { transform: rotate(3deg); }
+}
+.group:hover .animate-bell-swing,
+.animate-bell-swing-once {
+  transform-origin: top center;
+  animation: bellSwing 550ms ease-in-out;
+}
+
+/* 9. Scroll Reveal Helper */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1), transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 10. Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
