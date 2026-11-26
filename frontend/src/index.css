@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+/* Global Theme Variables - Warm Ivory Paper Edition (Ivory, Gold, Deep Atlas Navy) */
+:root {
+  --color-ivory: #E8E0D2;
+  --color-gold: #B89A5A;
+  --color-navy: #0E1D61;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  background-color: #E8E0D2;
+  color: #0E1D61;
+}
+
+body {
+  background-color: #E8E0D2;
+  color: #0E1D61;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Custom Gold and Navy scrollbar styling */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(14, 29, 97, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(184, 154, 90, 0.5);
+  border-radius: 9999px;
+  transition: background-color 200ms ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B89A5A;
+}
+
+:focus-visible {
+  outline: 2px solid #B89A5A;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Cartographic Field Notes Motion System (React App)
+   ========================================================================== */
+@keyframes cartoReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-carto-reveal {
+  animation: cartoReveal 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-page-enter {
+  animation: pageEnter 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes modalScaleIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-scale {
+  animation: modalScaleIn 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes backdropIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-backdrop {
+  animation: backdropIn 200ms ease-out both;
+}
+
+@keyframes telemetryBeacon {
+  0% { transform: scale(1); opacity: 0.65; }
+  75%, 100% { transform: scale(2.3); opacity: 0; }
+}
+.beacon-dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.beacon-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: telemetryBeacon 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ledgerRowIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-ledger-row {
+  animation: ledgerRowIn 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(min(var(--row-index, 0), 8) * 35ms);
+}
+.ledger-row-hover {
+  transition: background-color 180ms ease-out, box-shadow 180ms ease-out;
+}
+.ledger-row-hover:hover {
+  box-shadow: inset 3px 0 0 #B89A5A;
+  background-color: rgba(184, 154, 90, 0.09);
+}
+
+@keyframes lineDraw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.animate-line-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: lineDraw 850ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes barGrowX {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.animate-bar-x {
+  transform-origin: left center;
+  animation: barGrowX 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes barGrowY {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.animate-bar-y {
+  transform-origin: center bottom;
+  transform-box: fill-box;
+  animation: barGrowY 540ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.btn-gold-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(184, 154, 90, 0.32) 50%, transparent 75%);
+  transform: translateX(-120%);
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.btn-gold-shimmer:hover::after {
+  transform: translateX(120%);
+}
+
+@keyframes shakeError {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+.animate-shake {
+  animation: shakeError 360ms ease-in-out;
+}
+
+@keyframes bellSwing {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-12deg); }
+  45% { transform: rotate(10deg); }
+  70% { transform: rotate(-6deg); }
+  85% { transform: rotate(3deg); }
+}
+.group:hover .animate-bell-swing {
+  transform-origin: top center;
+  animation: bellSwing 550ms ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
