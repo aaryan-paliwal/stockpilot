@@ -1,0 +1,70 @@
+name: Inventory Management CI
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+
+  backend:
+    name: Backend Build & Test
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: inventory-backend
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Build Backend
+        run: mvn clean verify -e
+
+      - name: Build Docker Image
+        run: docker build -t inventory-backend .
+        working-directory: inventory-backend
+
+
+  frontend:
+    name: Frontend Build
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build Frontend
+        run: npm run build
+
+      - name: Build Docker Image
+        run: docker build -t inventory-frontend .
+        working-directory: frontend

@@ -1,0 +1,76 @@
+# ==========================================
+# Root Git Ignore - StockPilot
+# ==========================================
+
+# OS Files
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+
+# IDE & Editor Configs
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/*
+!.vscode/extensions.json
+.settings/
+.project
+.classpath
+.factorypath
+
+# Maven / Java Build Artifacts
+**/target/
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+.mvn/wrapper/maven-wrapper.jar
+
+# JaCoCo & Sonar
+**/target/site/jacoco/
+**/target/jacoco.exec
+.sonar/
+.scannerwork/
+
+# Node / Frontend Build Artifacts
+**/node_modules/
+node_modules/
+**/dist/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment & Secret Overrides
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Logs & Local Databases
+logs/
+*.log
+*.db
+data/
+
+# Added for clean repository hygiene
+!.env.sample
+!.env.template
+*.pem
+*.key
+*.p12
+*.pfx
+desktop.ini
+*.swp
+*.swo
+.vscode/
+.vs/
